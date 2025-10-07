@@ -79,14 +79,5 @@ shape = SubResource("BoxShape3D_w8frs")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 8, 8.955)
 
-[node name="Essaie" type="Label" parent="."]
-offset_left = 936.0
-offset_top = 1.0
-offset_right = 1153.0
-offset_bottom = 115.0
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [connection signal="body_entered" from="Floor/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="LandingPad/Area3D" to="." method="landpad_body_entered"]

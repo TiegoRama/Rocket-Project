@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class Player : RigidBody3D
 {
@@ -20,6 +21,7 @@ public partial class Player : RigidBody3D
         if (Input.IsActionPressed("ui_accept"))
         {
             ApplyCentralForce(Basis.Y * (float)delta * Thrust);
+            GetNode<AudioStreamPlayer>("Engine").Play();
         }
         if (Input.IsActionPressed("ui_left"))
         {
@@ -41,16 +43,20 @@ public partial class Player : RigidBody3D
         LinearVelocity = Vector3.Zero;
         AngularVelocity = Vector3.Zero;
     }
-    public void _on_body_entered_player(Node3D body)
+    public async void _on_body_entered_player(Node3D body)
     {
         if (body.IsInGroup("win") && !isPlayerCrash)
         {
             GD.Print("Gagné");
+            GetNode<AudioStreamPlayer>("Win").Play();
         }
         if (body.IsInGroup("Obstacle") && !isPlayerCrash)
         {
             isPlayerCrash = true;
             GD.Print("Perdu");
+            GetNode<AudioStreamPlayer>("Explosion").Play();
+            await ToSignal( GetNode<AudioStreamPlayer>("Explosion"), "finished");
+            GetNode<Label>("Score").Text = "Essai : " + (++GameSettings.Try).ToString();
             ResetPosition();
             isPlayerCrash = false;
         }

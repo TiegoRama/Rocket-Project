@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://se47c4lv1pem"]
+[gd_scene load_steps=7 format=3 uid="uid://se47c4lv1pem"]
 
 [ext_resource type="Script" uid="uid://cyfvvrg3kyv1k" path="res://scripts/Player.cs" id="1_3vyb7"]
 [ext_resource type="AudioStream" uid="uid://dxgt4p5a24cdd" path="res://assets/Audio/SFX - Death Explosion.ogg" id="2_g2els"]
+[ext_resource type="AudioStream" uid="uid://ko8xtnj14pv3" path="res://assets/Audio/SFX - Main engine thrust.ogg" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://323kjg1avu37" path="res://assets/Audio/SFX - Success.ogg" id="4_dqkch"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qhqgy"]
 
@@ -23,7 +25,24 @@ mesh = SubResource("CylinderMesh_qhqgy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_3vyb7")
 
-[node name="Explosion" type="AudioStreamPlayer3D" parent="."]
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_g2els")
+volume_db = -20.0
+
+[node name="Score" type="Label" parent="."]
+offset_left = 901.0
+offset_top = -1.0
+offset_right = 1153.0
+offset_bottom = 131.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qhqgy")
+volume_db = -20.0
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dqkch")
+volume_db = -20.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered_player"]
