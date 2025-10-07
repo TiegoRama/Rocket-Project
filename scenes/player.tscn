@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://se47c4lv1pem"]
+
+[ext_resource type="Script" uid="uid://cyfvvrg3kyv1k" path="res://scripts/Player.cs" id="1_3vyb7"]
+[ext_resource type="AudioStream" uid="uid://dxgt4p5a24cdd" path="res://assets/Audio/SFX - Death Explosion.ogg" id="2_g2els"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qhqgy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3vyb7"]
+
+[node name="Player" type="RigidBody3D"]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+contact_monitor = true
+max_contacts_reported = 10
+linear_damp = 1.0
+angular_damp = 3.0
+script = ExtResource("1_3vyb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_qhqgy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_3vyb7")
+
+[node name="Explosion" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_g2els")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered_player"]
