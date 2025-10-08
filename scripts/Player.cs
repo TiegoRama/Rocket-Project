@@ -14,7 +14,7 @@ public partial class Player : RigidBody3D
     {
         startPosition = Position;
         startRotation = RotationDegrees;
-        
+
     }
     public override void _Process(double delta)
     {
@@ -43,22 +43,30 @@ public partial class Player : RigidBody3D
         LinearVelocity = Vector3.Zero;
         AngularVelocity = Vector3.Zero;
     }
-    public async void _on_body_entered_player(Node3D body)
+    public void _on_body_entered_player(Node3D body)
     {
         if (body.IsInGroup("win") && !isPlayerCrash)
         {
-            GD.Print("Gagné");
-            GetNode<AudioStreamPlayer>("Win").Play();
+            win((body as LandingPad).filepathlevel);
         }
         if (body.IsInGroup("Obstacle") && !isPlayerCrash)
         {
-            isPlayerCrash = true;
-            GD.Print("Perdu");
-            GetNode<AudioStreamPlayer>("Explosion").Play();
-            await ToSignal( GetNode<AudioStreamPlayer>("Explosion"), "finished");
-            GetNode<Label>("Score").Text = "Essai : " + (++GameSettings.Try).ToString();
-            ResetPosition();
-            isPlayerCrash = false;
+            crash();
         }
+    }
+    private async void crash()
+    {
+        isPlayerCrash = true;
+        GetNode<AudioStreamPlayer>("Explosion").Play();
+        await ToSignal(GetNode<AudioStreamPlayer>("Explosion"), "finished");
+        GetNode<Label>("Score").Text = "Essai : " + (++GameSettings.Try).ToString();
+        ResetPosition();
+        isPlayerCrash = false;
+    }
+    private async void win(string next_level_file)
+    {
+            GetNode<AudioStreamPlayer>("Win").Play();
+            await ToSignal(GetNode<AudioStreamPlayer>("Win"), "finished");
+            GetTree().ChangeSceneToFile(next_level_file);
     }
 }
