@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://pexxq5dv7m7r"]
+[gd_scene load_steps=11 format=3 uid="uid://cxldwt7d44p31"]
 
 [ext_resource type="Script" uid="uid://cvjn6v782d8b8" path="res://scripts/Level.cs" id="1_2k3dv"]
 [ext_resource type="PackedScene" uid="uid://se47c4lv1pem" path="res://scenes/player.tscn" id="2_alqfr"]
@@ -55,13 +55,13 @@ use_collision = true
 size = Vector3(3, 1, 3)
 material = SubResource("StandardMaterial3D_w7c3h")
 script = ExtResource("4_6ep0u")
-filepathlevel = "uid://cxldwt7d44p31"
+filepathlevel = "uid://pexxq5dv7m7r"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 8, 8.955)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." groups=["Obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35004234, 5.3529844, 0.38256836)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103475094, 1.5192823, 0.38256836)
 use_collision = true
-size = Vector3(12.421597, 1, 1.7651367)
+size = Vector3(5.6987567, 2.993042, 1.7651367)
 material = SubResource("StandardMaterial3D_2k3dv")

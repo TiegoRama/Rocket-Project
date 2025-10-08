@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://duiagmv2c71pv"]
+
+[ext_resource type="Script" uid="uid://bukltol04g7rh" path="res://scripts/ObstacleAnine.cs" id="1_hchtp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gf0k6"]
+albedo_color = Color(0.7587153, 0.39419216, 0.016791664, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hchtp"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6o1ca"]
+points = PackedVector3Array(-1.5, -1.4997059, -1.4997059, 1.5, 1.4997756, 1.4997756, 1.5, -1.4997756, 1.4997756, 1.5, 1.4997756, -1.4997756, -1.5, 1.4997059, 1.4997059, 1.5, -1.4997756, -1.4997756, -1.5, -1.4997059, 1.4997059, -1.5, 1.4997059, -1.4997059)
+
+[node name="ObstacleAnine" type="AnimatableBody3D" groups=["Obstacle"]]
+script = ExtResource("1_hchtp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5392787, 0)
+material_override = SubResource("StandardMaterial3D_gf0k6")
+mesh = SubResource("BoxMesh_hchtp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5392787, 0)
+shape = SubResource("ConvexPolygonShape3D_6o1ca")

@@ -42,31 +42,40 @@ public partial class Player : RigidBody3D
         RotationDegrees = startRotation;
         LinearVelocity = Vector3.Zero;
         AngularVelocity = Vector3.Zero;
+        isPlayerCrash = false;
+        SetProcess(true);
     }
     public void _on_body_entered_player(Node3D body)
     {
-        if (body.IsInGroup("win") && !isPlayerCrash)
+        if (isPlayerCrash == false)
         {
-            win((body as LandingPad).filepathlevel);
-        }
-        if (body.IsInGroup("Obstacle") && !isPlayerCrash)
-        {
-            crash();
+            if (body.IsInGroup("win"))
+            {
+                win((body as LandingPad).filepathlevel);
+            }
+            if (body.IsInGroup("Obstacle"))
+            {
+                crash();
+            }
         }
     }
     private async void crash()
     {
         isPlayerCrash = true;
+        SetProcess(false);
         GetNode<AudioStreamPlayer>("Explosion").Play();
-        await ToSignal(GetNode<AudioStreamPlayer>("Explosion"), "finished");
         GetNode<Label>("Score").Text = "Essai : " + (++GameSettings.Try).ToString();
+        await ToSignal(GetNode<AudioStreamPlayer>("Explosion"), "finished");
         ResetPosition();
-        isPlayerCrash = false;
+        
+        
     }
-    private async void win(string next_level_file)
+    private void win(string next_level_file)
     {
-            GetNode<AudioStreamPlayer>("Win").Play();
-            await ToSignal(GetNode<AudioStreamPlayer>("Win"), "finished");
-            GetTree().ChangeSceneToFile(next_level_file);
+        GetNode<AudioStreamPlayer>("Win").Play();
+        Tween tween = CreateTween();
+        tween.TweenInterval(1.5f);
+        tween.TweenCallback(Callable.From(() => GetTree().ChangeSceneToFile(next_level_file)));
+
     }
 }
