@@ -1,23 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdmysgm5oks2b"]
+[gd_scene load_steps=7 format=3 uid="uid://bdmysgm5oks2b"]
 
-[ext_resource type="Script" uid="uid://cvjn6v782d8b8" path="res://scripts/Level.cs" id="1_u23xw"]
 [ext_resource type="PackedScene" uid="uid://se47c4lv1pem" path="res://scenes/player.tscn" id="2_kq3r6"]
 [ext_resource type="PackedScene" uid="uid://bo3xgwcro5uun" path="res://scenes/background.tscn" id="3_im88e"]
 [ext_resource type="Script" uid="uid://qhvcuaivh1ci" path="res://scripts/LandingPad.cs" id="4_vxn4p"]
 [ext_resource type="PackedScene" uid="uid://duiagmv2c71pv" path="res://scenes/obstacle_anine.tscn" id="5_kq3r6"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_2q6dc"]
-sky_material = SubResource("ProceduralSkyMaterial_rd3vj")
-
-[sub_resource type="Environment" id="Environment_w7c3h"]
-background_mode = 2
-sky = SubResource("Sky_2q6dc")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q6dc"]
 albedo_color = Color(0.12036886, 0.49677867, 0.98572177, 1)
@@ -26,17 +12,9 @@ albedo_color = Color(0.12036886, 0.49677867, 0.98572177, 1)
 albedo_color = Color(0.2244268, 0.5049786, 2.8878452e-07, 1)
 
 [node name="Level" type="Node3D"]
-script = ExtResource("1_u23xw")
 
 [node name="Player" parent="." instance=ExtResource("2_kq3r6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.7, 0)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_w7c3h")
 
 [node name="Background" parent="." instance=ExtResource("3_im88e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.9535108, 0.012458801)
@@ -53,11 +31,13 @@ use_collision = true
 size = Vector3(3, 1, 3)
 material = SubResource("StandardMaterial3D_w7c3h")
 script = ExtResource("4_vxn4p")
-filepathlevel = "uid://viyqkn7l0lrp"
+filepathlevel = "uid://c66a6cp8ao330"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 8, 8.955)
 
 [node name="ObstacleAnine" parent="." instance=ExtResource("5_kq3r6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 destination = Vector3(0, 8, 0)
-duree = 8.0
+duree = 3.0
+transitionType = 9

@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv3okatfwg5iy"]
+
+[ext_resource type="Script" uid="uid://crskbreg51cjj" path="res://MenuPrincipal.cs" id="1_ffwdg"]
+[ext_resource type="PackedScene" uid="uid://viyqkn7l0lrp" path="res://scenes/level1.tscn" id="2_ysajj"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ffwdg")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 196.0
+offset_right = 846.0
+offset_bottom = 292.0
+text = "Jouer"
+
+[node name="Level" parent="." instance=ExtResource("2_ysajj")]
+
+[node name="Player" parent="Level" index="0"]
+script = null
+
+[node name="BoosterParticlesLeft" parent="Level/Player" index="7"]
+emitting = false
+
+[node name="BoosterParticlesRight" parent="Level/Player" index="8"]
+emitting = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+
+[editable path="Level"]
+[editable path="Level/Player"]

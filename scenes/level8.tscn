@@ -1,0 +1,229 @@
+[gd_scene load_steps=12 format=3 uid="uid://ci32bldi3pbxh"]
+
+[ext_resource type="PackedScene" uid="uid://se47c4lv1pem" path="res://scenes/player.tscn" id="2_t20ry"]
+[ext_resource type="PackedScene" uid="uid://bo3xgwcro5uun" path="res://scenes/background.tscn" id="3_j38n6"]
+[ext_resource type="Script" uid="uid://qhvcuaivh1ci" path="res://scripts/LandingPad.cs" id="4_80iw4"]
+[ext_resource type="PackedScene" uid="uid://duiagmv2c71pv" path="res://scenes/obstacle_anine.tscn" id="5_ff5ek"]
+[ext_resource type="Script" uid="uid://o6xorete2co7" path="res://scripts/FollowCamera.cs" id="5_t20ry"]
+[ext_resource type="PackedScene" uid="uid://cdditx6ym8j50" path="res://scenes/score.tscn" id="7_j38n6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t20ry"]
+albedo_color = Color(0.4, 0.15333334, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q6dc"]
+albedo_color = Color(0.12036886, 0.49677867, 0.98572177, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
+albedo_color = Color(0.2244268, 0.5049786, 2.8878452e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qkggj"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_utlmm"]
+size = Vector3(3, 3, 3)
+
+[node name="Level" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_t20ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.7, 0)
+
+[node name="Background" parent="." instance=ExtResource("3_j38n6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.9535108, 0.012458801)
+
+[node name="Wall" parent="Background" index="0"]
+transform = Transform3D(0.98313063, 0.18290477, 0, -0.18290477, 0.98313063, 0, 0, 0, 1, -15.997106, 7.039313, 0)
+size = Vector3(2.7557373, 7.5323486, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall2" parent="Background" index="1"]
+transform = Transform3D(0.8509394, 0.5252637, 0, -0.5252637, 0.8509394, 0, 0, 0, 1, -12.764124, 32.180573, 0)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall11" type="CSGBox3D" parent="Background" groups=["Obstacle"]]
+transform = Transform3D(0.9884621, 0.15146786, 0, -0.15146786, 0.9884621, 0, 0, 0, 1, -12.764124, 28.618977, 0)
+use_collision = true
+size = Vector3(2.7557373, 8, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Ceilling" parent="Background" index="3"]
+transform = Transform3D(0.38200605, 0.9241597, 0, -0.9241597, 0.38200605, 0, 0, 0, 1, -9.80512, 36.030193, 0)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Ceilling2" parent="Background" index="4"]
+transform = Transform3D(0.104163945, 0.99456, 0, -0.99456, 0.104163945, 0, 0, 0, 1, -4.2019014, 37.88455, 0)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Ceilling3" parent="Background" index="5"]
+transform = Transform3D(-0.136217, 0.9906789, 0, -0.9906789, -0.136217, 0, 0, 0, 1, 3.5604768, 37.872807, 0)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Ceilling4" parent="Background" index="6"]
+transform = Transform3D(-0.27681154, 0.96092415, 0, -0.96092415, -0.27681154, 0, 0, 0, 1, 10.951338, 36.316727, 0)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall3" parent="Background" index="7"]
+transform = Transform3D(-0.99999857, 0.00157094, 0, -0.00157094, -0.99999857, 0, 0, 0, 1, 20.310965, 13.395824, 0)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall5" type="CSGBox3D" parent="Background" groups=["Obstacle"]]
+transform = Transform3D(-0.96705025, 0.25458518, 0, -0.25458518, -0.96705025, 0, 0, 0, 1, 19.142588, 20.545256, 0)
+use_collision = true
+size = Vector3(2.7557373, 8, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall6" type="CSGBox3D" parent="Background" groups=["Obstacle"]]
+transform = Transform3D(-0.99237716, -0.12323758, 0, 0.12323758, -0.99237716, 0, 0, 0, 1, 19.685362, 27.76283, 0)
+use_collision = true
+size = Vector3(2.7557373, 8, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall7" type="CSGBox3D" parent="Background" groups=["Obstacle"]]
+transform = Transform3D(-0.9139566, 0.4058118, 0, -0.4058118, -0.9139566, 0, 0, 0, 1, 16.736948, 32.440655, 0)
+use_collision = true
+size = Vector3(2.7557373, 8, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall12" type="CSGBox3D" parent="Background" groups=["Obstacle"]]
+transform = Transform3D(-0.053869486, 0.99854785, 0, -0.99854785, -0.053869486, 0, 0, 0, 1, 15.950203, 28.266365, 0.017940521)
+use_collision = true
+size = Vector3(2.7557373, 8, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall8" type="CSGBox3D" parent="Background" groups=["Obstacle"]]
+transform = Transform3D(-0.9847622, -0.17390583, 0, 0.17390583, -0.9847622, 0, 0, 0, 1, -14.128218, 24.005768, 0)
+use_collision = true
+size = Vector3(2.7557373, 8, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall9" type="CSGBox3D" parent="Background" groups=["Obstacle"]]
+transform = Transform3D(-0.95115346, 0.3087183, 0, -0.3087183, -0.95115346, 0, 0, 0, 1, -14.128218, 17.417551, 0)
+use_collision = true
+size = Vector3(2.7557373, 8, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall10" type="CSGBox3D" parent="Background" groups=["Obstacle"]]
+transform = Transform3D(-0.9529264, -0.30320144, 0, 0.30320144, -0.9529264, 0, 0, 0, 1, -14.128218, 12.256794, 0)
+use_collision = true
+size = Vector3(2.7557373, 8, 5)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Wall4" parent="Background" index="15"]
+transform = Transform3D(-0.86822474, -0.49617088, 0, 0.49617088, -0.86822474, 0, 0, 0, 1, 18.325567, 4.589386, 0)
+material = SubResource("StandardMaterial3D_t20ry")
+
+[node name="Stalamite" parent="Background" index="16"]
+transform = Transform3D(0.8136193, -0.53897667, 0.21800865, 0.5206115, 0.8423208, 0.13949743, -0.25881907, 1.5426819e-08, 0.96592593, -2.60891, 19.89572, -2.9999995)
+
+[node name="Stalamite8" parent="Background" index="18"]
+transform = Transform3D(-5.9604645e-08, -1, 0, 0.6522175, -3.8875193e-08, 0.75803196, -0.75803196, 4.5182226e-08, 0.6522175, -1.1175599, 4.5704665, -2.9999995)
+
+[node name="Stalamite9" parent="Background" index="19"]
+transform = Transform3D(-5.9604645e-08, -1, 0, 0.6522175, -3.8875193e-08, 0.75803196, -0.75803196, 4.5182226e-08, 0.6522175, 3.3365095, 21.286242, -24.47492)
+size = Vector3(63.659668, 1, 1)
+
+[node name="Stalamite11" parent="Background" index="21"]
+transform = Transform3D(0.77647156, -0.6284113, 0.046811026, 0.6272724, 0.7778812, 0.03781627, -0.06017759, 3.586864e-09, 0.9981877, -10.851922, 8.2627125, -3.2870808)
+size = Vector3(16.541138, 1, 1)
+
+[node name="Stalamite2" parent="Background" index="22"]
+transform = Transform3D(0.75682783, -0.63012165, -0.17366108, 0.65337753, 0.7365104, 0.17507198, 0.0175865, -0.24596559, 0.969119, 9.1017, 7.6520557, -3.197779)
+size = Vector3(29.492188, 1, 1)
+
+[node name="Stalamite3" parent="Background" index="23"]
+transform = Transform3D(-0.92001665, -0.22818656, -0.3185907, 0.22094737, -0.97348714, 0.059202686, -0.32365328, -0.01592433, 0.94604176, -2.1627378, 16.149254, -4.6834745)
+size = Vector3(40.20276, 1, 1)
+
+[node name="Stalamite4" parent="Background" index="24"]
+transform = Transform3D(0.74908197, -0.6313393, 0.20071593, 0.609827, 0.77550685, 0.16340263, -0.25881907, 1.5426819e-08, 0.96592593, 13.017298, 20.334461, -5.264019)
+size = Vector3(24.494995, 1, 1)
+
+[node name="Stalamite5" parent="Background" index="25"]
+transform = Transform3D(-0.8038678, -0.55443776, -0.21539572, 0.53554577, -0.8322253, 0.14349908, -0.25881907, 1.5426819e-08, 0.96592593, 0.09209418, 19.573965, -5.950148)
+size = Vector3(40.822388, 1, 1)
+
+[node name="LaunchPad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.2, 0)
+use_collision = true
+size = Vector3(3, 1, 3)
+material = SubResource("StandardMaterial3D_2q6dc")
+
+[node name="LandingPad" type="CSGBox3D" parent="." groups=["win"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.584513, 25.534237, -0.40525413)
+use_collision = true
+size = Vector3(3, 1, 3)
+material = SubResource("StandardMaterial3D_w7c3h")
+script = ExtResource("4_80iw4")
+filepathlevel = "uid://hchydkaonaft"
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 8, 8.955)
+script = ExtResource("5_t20ry")
+target = NodePath("../Player")
+
+[node name="ObstacleAnine" parent="." instance=ExtResource("5_ff5ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9147863, 6.333563, -0.388)
+destination = Vector3(-5, 0, 0)
+duree = 3.0
+
+[node name="MeshInstance3D" parent="ObstacleAnine" index="0"]
+mesh = SubResource("BoxMesh_qkggj")
+
+[node name="CollisionShape3D" parent="ObstacleAnine" index="1"]
+shape = SubResource("BoxShape3D_utlmm")
+
+[node name="ObstacleAnine2" parent="." instance=ExtResource("5_ff5ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8097153, 2.4158492, -0.388)
+destination = Vector3(0, 8, 0)
+duree = 6.0
+transitionType = 5
+
+[node name="MeshInstance3D" parent="ObstacleAnine2" index="0"]
+mesh = SubResource("BoxMesh_qkggj")
+
+[node name="CollisionShape3D" parent="ObstacleAnine2" index="1"]
+shape = SubResource("BoxShape3D_utlmm")
+
+[node name="ObstacleAnine3" parent="." instance=ExtResource("5_ff5ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8097153, 14.723827, -0.388)
+destination = Vector3(-8, 8, 0)
+duree = 3.0
+transitionType = 0
+
+[node name="MeshInstance3D" parent="ObstacleAnine3" index="0"]
+mesh = SubResource("BoxMesh_qkggj")
+
+[node name="CollisionShape3D" parent="ObstacleAnine3" index="1"]
+shape = SubResource("BoxShape3D_utlmm")
+
+[node name="ObstacleAnine4" parent="." instance=ExtResource("5_ff5ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1828995, 21.954256, -0.388)
+destination = Vector3(-4, -3, 0)
+duree = 3.0
+transitionType = 6
+
+[node name="MeshInstance3D" parent="ObstacleAnine4" index="0"]
+mesh = SubResource("BoxMesh_qkggj")
+
+[node name="CollisionShape3D" parent="ObstacleAnine4" index="1"]
+shape = SubResource("BoxShape3D_utlmm")
+
+[node name="ObstacleAnine5" parent="." instance=ExtResource("5_ff5ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9804955, 22.874483, -0.388)
+destination = Vector3(-3, 0, 0)
+duree = 3.0
+transitionType = 7
+
+[node name="MeshInstance3D" parent="ObstacleAnine5" index="0"]
+mesh = SubResource("BoxMesh_qkggj")
+
+[node name="CollisionShape3D" parent="ObstacleAnine5" index="1"]
+shape = SubResource("BoxShape3D_utlmm")
+
+[node name="Score" parent="." instance=ExtResource("7_j38n6")]
+
+[editable path="Background"]
+[editable path="ObstacleAnine"]
+[editable path="ObstacleAnine2"]
+[editable path="ObstacleAnine3"]
+[editable path="ObstacleAnine4"]
+[editable path="ObstacleAnine5"]
